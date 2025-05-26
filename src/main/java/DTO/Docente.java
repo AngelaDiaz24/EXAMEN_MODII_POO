@@ -12,6 +12,6 @@ public class Docente {
     private String codigo;
     private String nombre;
     private String direccion;
-    
+    private String fecha;
     
 }
