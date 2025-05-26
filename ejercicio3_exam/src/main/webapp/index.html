@@ -6,21 +6,45 @@
     </head>
     <body>
         <h1> Verificar el Balanceo </h1>
-        <input type="text" id="formula" placeholder="ingresa la formula, ej:([({})]) ">
-        <button onclick="verificabalanceo()">verificar</button>
-        
-        <script> 
-            funcion verificarbalanceo(){
-              const formula =document.getElementById("formula").value;
-              const pilaCaracteres= [];
-              const pilaApertura=['[','{','('];
-              const pilaCierre=[']','}',')'] ;
-                
-              for(let i=0;i<formula.length;i++){
-                  
-              }
+        <input type="text" id="formula" placeholder="ingresa la expreción, ej:([({})]) ">
+        <button onclick="verificarBalanceo()">Verificar</button>
+
+        <script>
+            function verificarBalanceo() {
+                const formula = document.getElementById("formula").value;
+                const pilaCaracteres = [];
+                const listaApertura = ['[', '{', '('];
+                const listaCierre = [']', '}', ')'];
+
+                for (let i = 0; i < formula.length; i++) {
+                    const c = formula[i];
+                    if (listaApertura.includes(c)) {
+                        pilaCaracteres.push(c);
+                    } else if (listaCierre.includes(c)) {
+                        if (pilaCaracteres.length === 0) {
+                            alert("No balanceado");
+                            return;
+                        }
+                        const cTemp = pilaCaracteres[pilaCaracteres.length - 1];
+                        const indice = listaApertura.indexOf(cTemp);
+                        if (indice !== -1 && listaCierre[indice] === c) {
+                            pilaCaracteres.pop();
+                        } else {
+                            alert("No balanceado");
+                            return;
+                        }
+                    }
+                }
+
+                if (pilaCaracteres.length !== 0) {
+                    alert("No balanceado");
+                } else {
+                    alert("Balanceado");
+                }
             }
-            
-            </script>
+
+        </script>
+    
+
     </body>
 </html>
