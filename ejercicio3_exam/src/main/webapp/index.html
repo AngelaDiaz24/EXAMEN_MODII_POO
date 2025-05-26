@@ -6,6 +6,18 @@
     </head>
     <body>
         <h1> Verificar el Balanceo </h1>
-        <input
+        <input type="text" id="formula" placeholder="ingresa la formula, ej:([({})]) ">
+        <button onclick="verificabalanceo()">verificar</button>
+        
+        <script> 
+            funcion verificarbalanceo(){
+              const formula =document.getElementById("formula").value;
+              const pilaCaracteres= [];
+              const pilaApertura=['[','{','('];
+              const pilaCierre=[']','}',')'] ;
+              
+            }
+            
+            </script>
     </body>
 </html>
