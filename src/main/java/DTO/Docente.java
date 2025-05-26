@@ -13,5 +13,5 @@ public class Docente {
     private String nombre;
     private String direccion;
     private String fecha;
-    
+    private double talla;
 }
