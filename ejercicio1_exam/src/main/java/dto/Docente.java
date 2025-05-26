@@ -4,6 +4,8 @@
  */
 package dto;
 
+import java.util.Date;
+
 /**
  *
  * @author rosar
@@ -12,14 +14,14 @@ public class Docente {
     private String codigo;
     private String nombre;
     private String direccion;
-    private String fecha;
+    private Date fecha;
     private double talla;
     private String correo;
 
     public Docente() {
     }
 
-    public Docente(String codigo, String nombre, String direccion, String fecha, double talla, String correo) {
+    public Docente(String codigo, String nombre, String direccion, Date fecha, double talla, String correo) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -60,11 +62,11 @@ public class Docente {
         this.direccion = direccion;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
