@@ -6,7 +6,10 @@ package gui;
 
 import dao.DocenteDAO;
 import dto.Docente;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,6 +33,8 @@ public class FraDocente extends javax.swing.JFrame {
             txtNombre.setText(n.getNombre());
             txtDireccion.setText(n.getDireccion());
             txtFecha.setText(formato.format(n.getFecha()));
+            txtTalla.setText(n.getTalla());
+            txtCorreo.setText(n.getCorreo());
             
         }
     }
@@ -50,10 +55,10 @@ public class FraDocente extends javax.swing.JFrame {
         btnGrabar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnPrimero = new javax.swing.JButton();
+        btnAnterior = new javax.swing.JButton();
+        btnSiguiente = new javax.swing.JButton();
+        btnUltimo = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnMostrar = new javax.swing.JButton();
@@ -82,20 +87,55 @@ public class FraDocente extends javax.swing.JFrame {
         btnCancelar.setText("CANCELAR");
 
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("|<");
+        btnPrimero.setText("|<");
+        btnPrimero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrimeroActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("<");
+        btnAnterior.setText("<");
+        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnteriorActionPerformed(evt);
+            }
+        });
 
-        jButton6.setText(">");
+        btnSiguiente.setText(">");
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
 
-        jButton7.setText(">|");
+        btnUltimo.setText(">|");
+        btnUltimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUltimoActionPerformed(evt);
+            }
+        });
 
         btnAgregar.setText("AGREGAR");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("MODIFICAR");
 
         btnMostrar.setText("MOSTRAR");
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Direccion:");
 
@@ -121,13 +161,13 @@ public class FraDocente extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnMostrar))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnPrimero, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnUltimo, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -192,10 +232,10 @@ public class FraDocente extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7))
+                    .addComponent(btnPrimero)
+                    .addComponent(btnAnterior)
+                    .addComponent(btnSiguiente)
+                    .addComponent(btnUltimo))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAgregar)
@@ -212,9 +252,58 @@ public class FraDocente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGrabarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnPrimeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeroActionPerformed
+        docDAO.irAlInicio();
+        cargarDatos();
+    }//GEN-LAST:event_btnPrimeroActionPerformed
+
+    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+        docDAO.anterior();
+        cargarDatos();
+    }//GEN-LAST:event_btnAnteriorActionPerformed
+
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        docDAO.siguiente();
+        cargarDatos();
+    }//GEN-LAST:event_btnSiguienteActionPerformed
+
+    private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
+        docDAO.irAlFinal();
+        cargarDatos();
+    }//GEN-LAST:event_btnUltimoActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        
+        String codigo = txtCodigo.getText();
+        String nombre = txtNombre.getText();
+        String direccion = txtDireccion.getText();
+        String talla = txtTalla.getText();
+        String correo = txtCorreo.getText();
+        try {
+            Date fecha = formato.parse(txtFecha.getText());
+            Docente a = new Docente(codigo, nombre, direccion, fecha, talla, correo, null, null);
+            docDAO.agregar(a);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Fecha inválida. Use el formato dd/MM/yyyy");
+        }
+        txtCodigo.setText("");
+        txtNombre.setText("");
+        txtDireccion.setText("");
+        txtFecha.setText("");
+        txtTalla.setText("");
+        txtCorreo.setText("");
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        docDAO.eliminar();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+       String lista=docDAO.leer();
+       JOptionPane.showConfirmDialog(rootPane, lista);
+    }//GEN-LAST:event_btnMostrarActionPerformed
+    
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -249,15 +338,15 @@ public class FraDocente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAnterior;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGrabar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnMostrar;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton btnPrimero;
+    private javax.swing.JButton btnSiguiente;
+    private javax.swing.JButton btnUltimo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

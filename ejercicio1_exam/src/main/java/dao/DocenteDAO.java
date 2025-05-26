@@ -64,7 +64,7 @@ public class DocenteDAO {
     
     public void eliminar() {
         if (raiz == null) {
-            JOptionPane.showMessageDialog(null, "Todavia no se ingresan Sismos");
+            JOptionPane.showMessageDialog(null, "Todavia no se ingresan Datos");
         }
         
         Docente p = raiz;
@@ -83,7 +83,7 @@ public class DocenteDAO {
     }
     
     public String leer() {
-        String lista = "Datos del Alumnos:\n";
+        String lista = "Datos del Docente:\n";
         Docente p = raiz;
         while (p != null) {
             lista += "Codigo: " + p.getCodigo() + "\n"

@@ -15,7 +15,7 @@ public class Docente {
     private String nombre;
     private String direccion;
     private Date fecha;
-    private double talla;
+    private String talla;
     private String correo;
     private Docente sig;
     private Docente ant;
@@ -23,7 +23,7 @@ public class Docente {
     public Docente() {
     }
 
-    public Docente(String codigo, String nombre, String direccion, Date fecha, double talla, String correo,Docente sig, Docente ant) {
+    public Docente(String codigo, String nombre, String direccion, Date fecha, String talla, String correo,Docente sig, Docente ant) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -74,11 +74,11 @@ public class Docente {
         this.fecha = fecha;
     }
 
-    public double getTalla() {
+    public String getTalla() {
         return talla;
     }
 
-    public void setTalla(double talla) {
+    public void setTalla(String talla) {
         this.talla = talla;
     }
 
